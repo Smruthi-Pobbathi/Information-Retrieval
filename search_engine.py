@@ -251,6 +251,6 @@ if __name__ == "__main__":
         search_bool_call(client, query, bool_file, index) 
         search_tf(client, query, tf_file, index)
         search_tf_idf(client, query, tf_idf_file, index)
-        serach_relevance_feedback(client, query, "relevance_file", index)
+        serach_relevance_feedback(client, query, "relevance_file.txt", index)
         search_custom(client, query, custom_file, index)
         
