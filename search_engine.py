@@ -130,10 +130,10 @@ def search_bool_call(client, qry, file, index):
 def search_tf(client, qry, file, index):
     body = {
         "query": {
-            "match_phrase": {
-                "title": qry['title'], "boost": 2
+            "match": {
+                "title": qry['title']
             },
-            "match_phrase": {
+            "match": {
                 "title": qry['desc']
             }
         }
@@ -171,7 +171,7 @@ def serach_relevance_feedback(client, qry, file, index):
     rank_result = client.rank_eval(index = index, requests = req, metric = metric)
     hits = rank_result["details"][qry['num']]["hits"]
     
-    with open(file, 'w') as f:
+    with open(file, 'a+') as f:
         for i in range(len(hits)):
             file_line = qry['num'] + "\t"+ "Q0" + "\t"  + str(hits[i]["hit"]["_id"])+ "\t" + str(i) + "\t" + str(hits[i]["hit"]["_score"]) + "\t" + "relevence" + "\n"
             f.write(file_line)
